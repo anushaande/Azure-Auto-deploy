@@ -1,8 +1,8 @@
 #!/bin/bash
 
-$gitrepo = https://github.com/USF-IT/Azure-Auto-deploy.git
-$token = 60c82331e070422159e9b62913788457f18ba20a
-$webappname = USFTestCI
+$gitrepo = "https://github.com/USF-IT/Azure-Auto-deploy.git"
+$token = "60c82331e070422159e9b62913788457f18ba20a"
+$webappname = "USFTestCI"
 
 # Create a resource group.
 #az group create --location westeurope --name myResourceGroup  ---- USFTestCI
