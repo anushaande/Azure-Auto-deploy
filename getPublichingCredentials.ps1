@@ -58,7 +58,7 @@ function Download-FileFromWebApp($resourceGroupName, $webAppName, $slotName = ""
 
 $resourceGroupName = "USFTestCI"
 $webAppName = "USFTestCI"
-$kuduPath = "getPublichingCredentials.ps1~"
+$kuduPath = "link8.html"
 
     $kuduApiAuthorisationToken = Get-KuduApiAuthorisationHeaderValue $resourceGroupName $webAppName $slotName
     if ($slotName -eq ""){
