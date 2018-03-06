@@ -7,4 +7,3 @@ Enable_Scope_Specification.ps1
 Provide_certificate.ps1
 Service_principle_pwd.ps1
 Role_Assignment.ps1
-Logint_asureRM.ps1
