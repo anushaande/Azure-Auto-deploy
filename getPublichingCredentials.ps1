@@ -1,6 +1,15 @@
 #!/bin/bash
 $resourceGroupName = "USFTestCI"
 $webAppName = "USFTestCI"
+
+$azureAccountName ="andeanusha24@gmail.com"
+$azurePassword = ConvertTo-SecureString "rakesh13" -AsPlainText -Force
+
+$psCred = New-Object System.Management.Automation.PSCredential($azureAccountName, $azurePassword)
+
+Login-AzureRmAccount -Credential $psCred
+
+
 function Get-AzureRmWebAppPublishingCredentials($resourceGroupName, $webAppName, $slotName = $null){
 
 $resourceGroupName = "USFTestCI"
