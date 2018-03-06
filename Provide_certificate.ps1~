@@ -1,0 +1,15 @@
+Pram (
+
+[String]$CertSubject = exampleappScriptCert,
+
+ (Get-AzureRmADApplication -DisplayNameStartWith "USFTestCI").ApplicationId = [String] $ApplicationID,
+
+ (Get-AzureRmSubscription -SubscriptionName "Free Trial").TenantId = [String] $TenantId
+ )
+
+ $Thumbprint = (Get-ChildItem cert:\CurrentUser\My\ | Where-Object {$_.Subject -match $CertSubject }).Thumbprint
+ Login-AzureRmAccount -ServicePrincipal -CertificateThumbprint $Thumbprint -ApplicationId $ApplicationId -TenantId $TenantIdaram
+
+
+
+

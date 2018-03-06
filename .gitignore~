@@ -1,3 +1,6 @@
 abc1.txt
 Deployment.ps1
 USFTestCI.xml
+Gitpush.ps1
+Create_service_principal.ps1
+Enable_Scope_Specification.ps1
