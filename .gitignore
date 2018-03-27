@@ -10,4 +10,12 @@ Service_principle_pwd.ps1
 Role_Assignment.ps1
 Logint_asureRM.ps1
 ScriptDesc
-
+PushChangesToCD.ps1
+getPublichingCredentials
+getPublichingCredentials.ps1~
+Gitpush.ps1~
+exp
+PushChangesToCD
+.PushChangesToCD.un~
+*.un~
+*~

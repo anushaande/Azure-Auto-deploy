@@ -1,9 +1,0 @@
-#!/bin/bash
-
-$username= "anushaande"
-$password= "Anunag123$"
-$command= 
-
-git push https://${username}:${password}@github.com/USF-IT/Azure-Auto-deploy.git --all
-
-echo "All the changes at $Get-Date are pushed to remote repository"
