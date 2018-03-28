@@ -19,3 +19,4 @@ PushChangesToCD
 .PushChangesToCD.un~
 *.un~
 *~
+getPublichingCredentials.ps1
