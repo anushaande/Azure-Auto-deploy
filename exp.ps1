@@ -1,60 +1,27 @@
-#!/bin/bash
+# # #!/bin/bash
+
+# # $item = "link5.html"
+
+# # $sourceItem = "C:\WorkStation\GitLocalRepo\Azure-Auto-deploy\$item"
+
+# # get-childitem $sourceItem | copy-item -Destination 'C:\WorkStation\GitLocalRepo\Sitecore-Auto-Deploy-To-Azure'
 
 
-$list = "Gitpush.ps1","Additional.html"
+# # echo "File is copied successfully"
+# $Commit_id = "438a3e255187c6fd90ed6a2496d4037c9464aac"
+# $Patch_id = "Patch" + $Commit_id.Trim()
+# $Patch_name = $Patch_id + ".patch"
+# echo $Patch_name
+# echo $Patch_id
 
-$Files_in_CD = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Sitecore-Auto-Deploy-To-Azure -Depth 2 
-#Gitpush.ps1
-#Additional.html
+# #echo "Hello World!" > $Patch_name
 
-foreach ($listitem in $list)
-{
-echo "Started executing first foreach loop with selected file" $listitem
-:outer
-foreach ($file in $Files_in_CD)
-{
-echo "Started executing second Foreach loop and testing" $file 
+# git format-patch -1 Head --stdout > $Patch_name
 
-if (Test-Path $file -include $listitem)
-		{
-			echo "This is from if in foreach loop" $listitem
-			$x="True"
-			break
-		}
-		else
-		{
-		    echo "This is from else in foreach" $listitem
-			$x="False"
-		}
-
-}
-echo $x
-}
-# If ($Selected_file.Exists) {Copy-Item $Selected_file LAN_Drive:\}
-# Else {Write-Host "File does not exist"}
-
-
-# foreach($scriptitem in $Script:x)
-# {
-# $item = $scriptitem | out-string
-# echo "Started executing first foreach loop with selected file" $scriptitem
-# :outer
-# foreach ($file in $Files_in_CD)
-# {
-# echo "Started executing second Foreach loop and testing" $file 
-
-# if (Test-Path $file -include $item)
-		# {
-		   # echo "This is from if in foreach loop" $item
-			# $x="True"
-			# break
-		# }
-		# else
-		# {
-		  # echo "This is from else in foreach" $item
-			# $x="False"
-		# }
-
-# }
-# echo $x
-# }
+$Current_Directory = pwd
+echo "You are in $Current_Directory"
+set-location 'C:\WorkStation\GitLocalRepo\Sitecore-Auto-Deploy-To-Azure' 
+$Changed_location = pwd
+echo "Your location is changed to $Changed_location"
+set-location $Current_Directory
+pwd
