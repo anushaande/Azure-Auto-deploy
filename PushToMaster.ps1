@@ -10,7 +10,7 @@ write-host "----------------------------------Applying patch in master----------
 cat PatchOfDiff | git apply --reject --ignore-whitespace --whitespace=nowarn
 write-host "----------------------------------Removing the patch which is applied------------------------------------------------" -ForegroundColor "Cyan"
 rm PatchOfDiff
-#git add .
+git add .
 write-host "----------------------------------Commiting the changes in master branch------------------------------------------------" -ForegroundColor "Cyan"
 $date = Date
 git commit -m "Commiting changes on $date"
