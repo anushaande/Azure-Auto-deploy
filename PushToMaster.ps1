@@ -6,6 +6,7 @@ rm PatchOfDiff -Recurse -ErrorAction SilentlyContinue
 git diff master dev-branch > PatchOfDiff
 cat PatchOfDiff | git apply --reject --ignore-whitespace --whitespace=nowarn
 rm PatchOfDiff
+git add .
 $date = Date
 git commit -m "Commiting changes on $date"
 git push -u origin master 
