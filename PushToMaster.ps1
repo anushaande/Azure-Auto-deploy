@@ -14,7 +14,7 @@ git commit -m "Committing changes on $date"
 write-host "----------------------------------Pushing changes to master branch-----------------------------------------" -ForegroundColor "Cyan"
 git push -u origin master 
 rm .\.git\rebase-apply -Recurse -ErrorAction SilentlyContinue
-git am --skip-
+git am --skip
 write-host "----------------------------------Git status---------------------------------------------------------------" -ForegroundColor "Cyan"
 git status
 
