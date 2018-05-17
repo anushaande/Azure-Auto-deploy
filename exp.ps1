@@ -25,14 +25,14 @@ if (Test-Path $Masterfile -include $file)
 		{
 			$x=1
 # File exists
-
+echo "$file is present in master branch"
 			break
 		}
 		else
 		{
 			$x=0
 # File doesn't exists.
-
+echo "$file is not present in master branch"
 		}
 
 }
@@ -42,14 +42,14 @@ if (Test-Path $Devfile -include $file)
 		{
 			$y=1
 # File exists
-
+echo "$file is present in dev branch"
 			break
 		}
 		else
 		{
 			$y=0
 # File doesn't exists.
-
+echo "$file is not present in dev branch"
 		}
 
 }

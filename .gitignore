@@ -20,3 +20,4 @@ PushChangesToCD
 *.un~
 *~
 getPublichingCredentials.ps1
+exp.ps1
