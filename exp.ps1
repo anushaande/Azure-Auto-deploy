@@ -9,7 +9,7 @@ $Files_Deleted = New-Object System.Collections.ArrayList;
 
 $Files = git diff master dev-branch --name-only
 
-#git checkout master   ----- This script should be included in checkout function.
+git checkout master   #----- This script should be included in checkout function.
 $Files_in_Master = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Sitecore-Auto-Deploy-To-Azure -Depth 30
 
 git checkout dev-branch
