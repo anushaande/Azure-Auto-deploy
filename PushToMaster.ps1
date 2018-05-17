@@ -17,4 +17,5 @@ rm .\.git\rebase-apply -Recurse -ErrorAction SilentlyContinue
 git am --skip
 write-host "----------------------------------Git status---------------------------------------------------------------" -ForegroundColor "Cyan"
 git status
-
+write-host "----------------------------------Going back to "dev-branch"-----------------------------------------------" -ForegroundColor "Cyan"
+git checkout dev-branch
