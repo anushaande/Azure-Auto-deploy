@@ -1,3 +1,4 @@
+
 #!/bin/bash
 Function categorize_files_modified {
 [cmdletbinding()]
@@ -24,14 +25,16 @@ if (Test-Path $Masterfile -include $file)
 		{
 			$x=1
 # File exists
+
 			break
 		}
 		else
 		{
 			$x=0
 # File doesn't exists.
+
 		}
-echo $file , $x
+
 }
 foreach ($Devfile in $Files_in_dev)
 {
@@ -39,16 +42,38 @@ if (Test-Path $Devfile -include $file)
 		{
 			$y=1
 # File exists
+
 			break
 		}
 		else
 		{
 			$y=0
 # File doesn't exists.
+
 		}
 
 }
-echo $file , $y
+if ($x -eq 1){
+
+echo "$file is present in master branch"
+
+}
+else{
+
+echo "$file is not present in master branch"
+
+}
+if ($y -eq 1){
+
+echo "$file is present in dev branch"
+
+}
+else{
+
+echo "$file is not present in dev branch"
+
+}
+
 }
 
 echo $Files
