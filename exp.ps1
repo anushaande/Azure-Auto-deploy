@@ -55,12 +55,12 @@ if (Test-Path $Devfile -include $file)
 }
 if ($x -eq 1){
 
-echo "$file is present in master branch"
+echo "$file is present in master"
 
 }
 else{
 
-echo "$file is not present in master branch"
+echo "$file is not present in master"
 
 }
 if ($y -eq 1){
