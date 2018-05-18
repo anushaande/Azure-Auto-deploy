@@ -25,8 +25,7 @@ if (Test-Path $Masterfile -include $file)
 		{
 			$x=1
 # File exists
-
-			break
+             break
 		}
 		else
 		{
@@ -53,29 +52,15 @@ if (Test-Path $Devfile -include $file)
 		}
 
 }
-if ($x -eq 1){
-
-echo "$file is present in master"
-
-}
+if     ($x -eq 1 && $y -eq 0){
+echo "$file is present in master but not present in dev branch"}
+elseif ($x -eq 0 && $y -eq 1){
+echo "$file is not present in master"}
+elseif ($y -eq 1) && $y -eq 1{
+echo "$file is present in both master as well as dev branch"}
 else{
-
-echo "$file is not present in master"
-
+echo "$file is not present in master or dev branches"}
 }
-if ($y -eq 1){
-
-echo "$file is present in dev branch"
-
-}
-else{
-
-echo "$file is not present in dev branch"
-
-}
-
-}
-
 echo $Files
 }
 
