@@ -54,13 +54,13 @@ if (Test-Path $Devfile -include $file)
 }
 if     (($x -eq 1) -and ($y -eq 0))
 {
-echo "$file is present in master but not present in dev branch"
+echo "$file is present in master but not in dev branch"
 }
 elseif (($x -eq 0) -and ($y -eq 1))
 {
-echo "$file is not present in master"
+echo "$file is not present in master but in dev branch"
 }
-elseif (($y -eq 1) -and ($y -eq 1))
+elseif (($x -eq 1) -and ($y -eq 1))
 {
 echo "$file is present in both master as well as dev branch"
 }
