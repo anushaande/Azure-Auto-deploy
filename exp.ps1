@@ -13,7 +13,8 @@ git checkout dev-branch
 $Files_in_dev = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 1
 echo $Files_in_dev > ../dev.txt
 
-Function Find_in_master {
+Function Find_in_master 
+{
 [cmdletbinding()]
 Param (
 [string]$file, 
@@ -21,7 +22,6 @@ Param (
 $Files_in_Master
    ) 
 # End of Parameters
-Process {
 
 foreach($Masterfile in $Files_in_Master)
 {
@@ -37,11 +37,12 @@ $x = 0
 # echo "$file doesnot exist in master"
 }
 }
-}
+
 return $x
 }
 
-Function Find_in_dev {
+Function Find_in_dev 
+{
 [cmdletbinding()]
 Param (
 [string]$file, 
@@ -49,7 +50,6 @@ Param (
 $Files_in_dev
    ) 
 # End of Parameters
-Process {
 
 foreach($Devfile in $Files_in_dev)
 {
@@ -65,7 +65,7 @@ $y = 0
 # echo "$file doesnot exist in master"
 }
 }
-}
+
 return $y
 }
 
@@ -74,7 +74,6 @@ return $y
 
 
 Function categorize_files_modified {
-[cmdletbinding()]
 # $Files = New-Object System.Collections.ArrayList;
 # $Files_Modified = New-Object System.Collections.ArrayList;
 # $Files_Added = New-Object System.Collections.ArrayList;
