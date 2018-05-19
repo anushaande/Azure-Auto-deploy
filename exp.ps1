@@ -37,8 +37,7 @@ $x = 0
 # echo "$file doesnot exist in master"
 }
 }
-
-return $x
+# return $x
 }
 
 Function Find_in_dev 
@@ -65,8 +64,7 @@ $y = 0
 # echo "$file doesnot exist in master"
 }
 }
-
-return $y
+# return $y
 }
 
 
