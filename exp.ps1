@@ -1,4 +1,3 @@
-
 #!/bin/bash
 Function categorize_files_modified {
 [cmdletbinding()]
@@ -32,7 +31,6 @@ if (Test-Path $Masterfile -include $file)
 		{
 			$x=0
 # File doesn't exists.
-
 		}
 
 }
