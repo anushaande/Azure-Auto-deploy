@@ -1,6 +1,4 @@
 #!/bin/bash
-Function categorize_files_modified {
-[cmdletbinding()]
 $Files = New-Object System.Collections.ArrayList;
 $Files_Modified = New-Object System.Collections.ArrayList;
 $Files_Added = New-Object System.Collections.ArrayList;
@@ -14,52 +12,99 @@ echo $Files_in_Master > ../master.txt
 git checkout dev-branch
 $Files_in_dev = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 1
 echo $Files_in_dev > ../dev.txt
+
+Function Find_in_master {
+[cmdletbinding()]
+Param (
+[string]$file, 
+[int]$x, 
+$Files_in_Master
+   ) 
+# End of Parameters
+Process {
+
+foreach($Masterfile in $Files_in_Master)
+{
+if (Test-Path $Masterfile -include $file)
+{
+$x = 1
+# echo "$file exists in master"
+break
+}
+else
+{
+$x = 0
+# echo "$file doesnot exist in master"
+}
+}
+}
+return $x
+}
+
+Function Find_in_dev {
+[cmdletbinding()]
+Param (
+[string]$file, 
+[int]$y, 
+$Files_in_dev
+   ) 
+# End of Parameters
+Process {
+
+foreach($Devfile in $Files_in_dev)
+{
+if (Test-Path $Devfile -include $file)
+{
+$y = 1
+# echo "$file exists in master"
+break
+}
+else
+{
+$y = 0
+# echo "$file doesnot exist in master"
+}
+}
+}
+return $y
+}
+
+
+
+
+
+Function categorize_files_modified {
+[cmdletbinding()]
+# $Files = New-Object System.Collections.ArrayList;
+# $Files_Modified = New-Object System.Collections.ArrayList;
+# $Files_Added = New-Object System.Collections.ArrayList;
+# $Files_Deleted = New-Object System.Collections.ArrayList;
+
+# $Files = git diff master dev-branch --name-only
+
+# git checkout master   #----- This script should be included in checkout function.
+# $Files_in_Master = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 1
+# echo $Files_in_Master > ../master.txt
+# git checkout dev-branch
+# $Files_in_dev = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 1
+# echo $Files_in_dev > ../dev.txt
 #git checkout master
 
 foreach($file in $Files)
 {
-foreach ($Masterfile in $Files_in_Master)
-{
 
-if (Test-Path $Masterfile -include $file)
-		{
-			$x=1
-# File exists
-             break
-		}
-		else
-		{
-			$x=0
-# File doesn't exists.
-		}
+$m = Find_in_master
+$d = Find_in_dev
 
-}
-foreach ($Devfile in $Files_in_dev)
-{
-if (Test-Path $Devfile -include $file)
-		{
-			$y=1
-# File exists
-
-			break
-		}
-		else
-		{
-			$y=0
-# File doesn't exists.
-
-		}
-
-}
-if     (($x -eq 1) -and ($y -eq 0))
+if     (($m -eq 1) -and ($d -eq 0))
 {
 echo "$file is present in master but not in dev branch"
 }
-elseif (($x -eq 0) -and ($y -eq 1))
+elseif (($m -eq 0) -and ($d -eq 1))
 {
 echo "$file is not present in master but in dev branch"
 }
-elseif (($x -eq 1) -and ($y -eq 1))
+elseif (($m -eq 1) -and ($d -eq 1))
 {
 echo "$file is present in both master as well as dev branch"
 }
@@ -68,7 +113,6 @@ else
 echo "$file is not present in master or dev branches"
 }
 }
-echo $Files
 }
 
 categorize_files_modified
