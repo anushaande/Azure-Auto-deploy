@@ -22,7 +22,7 @@ Param (
 $Files_in_Master
    ) 
 # End of Parameters
-
+echo "This is from master function . File sent into master function is $file"
 foreach($Masterfile in $Files_in_Master)
 {
 if (Test-Path $Masterfile -include $file)
@@ -37,6 +37,7 @@ $x = 0
 # echo "$file doesnot exist in master"
 }
 }
+echo "Value of x in master function is $x"
 # return $x
 }
 
@@ -49,7 +50,7 @@ Param (
 $Files_in_dev
    ) 
 # End of Parameters
-
+echo "This is from dev function . File sent into dev function is $file"
 foreach($Devfile in $Files_in_dev)
 {
 if (Test-Path $Devfile -include $file)
@@ -64,6 +65,7 @@ $y = 0
 # echo "$file doesnot exist in master"
 }
 }
+echo "Value of y in dev function is $y"
 # return $y
 }
 
@@ -86,8 +88,12 @@ Function categorize_files_modified {
 foreach($file in $Files)
 {
 
+echo "File sent into master function is $file"
+
 $m = Find_in_master
 echo "m = $m"
+
+echo "File sent into dev function is $file"
 $d = Find_in_dev
 echo "d = $d"
 
