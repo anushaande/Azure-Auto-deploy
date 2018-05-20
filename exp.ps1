@@ -67,10 +67,6 @@ $y = 0
 # return $y
 }
 
-
-
-
-
 Function categorize_files_modified {
 # $Files = New-Object System.Collections.ArrayList;
 # $Files_Modified = New-Object System.Collections.ArrayList;
@@ -91,7 +87,9 @@ foreach($file in $Files)
 {
 
 $m = Find_in_master
+echo "m = $m"
 $d = Find_in_dev
+echo "d = $d"
 
 if     (($m -eq 1) -and ($d -eq 0))
 {
