@@ -21,7 +21,7 @@ $file,
 $Files_in_Master
    ) 
 # End of Parameters
-echo "This is from master function . File sent into master function is $file"
+echo "This is from master function . File sent into master function is $file `n"
 foreach($Masterfile in $Files_in_Master)
 {
 if (Test-Path $Masterfile -include $file)
@@ -36,8 +36,8 @@ $x = 0
 # echo "$file doesnot exist in master"
 }
 }
-echo "Value of x in master function is $x"
-# return $x
+echo "Value of x in master function is $x `n"
+return $x
 }
 
 Function Find_in_dev 
@@ -48,7 +48,7 @@ $file,
 $Files_in_dev
    ) 
 # End of Parameters
-echo "This is from dev function . File sent into dev function is $file"
+echo "This is from dev function . File sent into dev function is $file `n"
 foreach($Devfile in $Files_in_dev)
 {
 if (Test-Path $Devfile -include $file)
@@ -63,8 +63,8 @@ $y = 0
 # echo "$file doesnot exist in master"
 }
 }
-echo "Value of y in dev function is $y"
-# return $y
+echo "Value of y in dev function is $y `n"
+return $y
 }
 
 Function categorize_files_modified {
@@ -85,31 +85,31 @@ echo $Files_in_dev > ../dev.txt
 
 foreach($file in $Files)
 {
+$file_string =$file | out-string
+echo "File sent into master function is $file `n"
 
-echo "File sent into master function is $file"
+$m = Find_in_master($file_string,$Files_in_Master)
+echo "m = $m `n"
 
-$m = Find_in_master($file,$Files_in_Master)
-echo "m = $m"
-
-echo "File sent into dev function is $file"
-$d = Find_in_dev($file,$Files_in_dev)
-echo "d = $d"
+echo "File sent into dev function is $file `n"
+$d = Find_in_dev($file_string,$Files_in_dev)
+echo "d = $d `n"
 
 if     (($m -eq 1) -and ($d -eq 0))
 {
-echo "$file is present in master but not in dev branch"
+echo "$file is present in master but not in dev branch `n"
 }
 elseif (($m -eq 0) -and ($d -eq 1))
 {
-echo "$file is not present in master but in dev branch"
+echo "$file is not present in master but in dev branch `n"
 }
 elseif (($m -eq 1) -and ($d -eq 1))
 {
-echo "$file is present in both master as well as dev branch"
+echo "$file is present in both master as well as dev branch `n"
 }
 else
 {
-echo "$file is not present in master or dev branches"
+echo "$file is not present in master or dev branches `n"
 }
 }
 }
