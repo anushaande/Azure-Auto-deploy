@@ -1,24 +1,23 @@
 #!/bin/bash
-$Files = New-Object System.Collections.ArrayList;
-$Files_Modified = New-Object System.Collections.ArrayList;
-$Files_Added = New-Object System.Collections.ArrayList;
-$Files_Deleted = New-Object System.Collections.ArrayList;
+# $Files = New-Object System.Collections.ArrayList;
+# $Files_Modified = New-Object System.Collections.ArrayList;
+# $Files_Added = New-Object System.Collections.ArrayList;
+# $Files_Deleted = New-Object System.Collections.ArrayList;
 
-$Files = git diff master dev-branch --name-only
+# $Files = git diff master dev-branch --name-only
 
-git checkout master   #----- This script should be included in checkout function.
-$Files_in_Master = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 1
-echo $Files_in_Master > ../master.txt
-git checkout dev-branch
-$Files_in_dev = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 1
-echo $Files_in_dev > ../dev.txt
+# git checkout master   #----- This script should be included in checkout function.
+# $Files_in_Master = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 1
+# echo $Files_in_Master > ../master.txt
+# git checkout dev-branch
+# $Files_in_dev = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 1
+# echo $Files_in_dev > ../dev.txt
 
 Function Find_in_master 
 {
 [cmdletbinding()]
 Param (
-[string]$file, 
-[int]$x, 
+$file,  
 $Files_in_Master
    ) 
 # End of Parameters
@@ -45,8 +44,7 @@ Function Find_in_dev
 {
 [cmdletbinding()]
 Param (
-[string]$file, 
-[int]$y, 
+$file,  
 $Files_in_dev
    ) 
 # End of Parameters
@@ -70,19 +68,19 @@ echo "Value of y in dev function is $y"
 }
 
 Function categorize_files_modified {
-# $Files = New-Object System.Collections.ArrayList;
-# $Files_Modified = New-Object System.Collections.ArrayList;
-# $Files_Added = New-Object System.Collections.ArrayList;
-# $Files_Deleted = New-Object System.Collections.ArrayList;
+$Files = New-Object System.Collections.ArrayList;
+$Files_Modified = New-Object System.Collections.ArrayList;
+$Files_Added = New-Object System.Collections.ArrayList;
+$Files_Deleted = New-Object System.Collections.ArrayList;
 
-# $Files = git diff master dev-branch --name-only
+$Files = git diff master dev-branch --name-only
 
-# git checkout master   #----- This script should be included in checkout function.
-# $Files_in_Master = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 1
-# echo $Files_in_Master > ../master.txt
-# git checkout dev-branch
-# $Files_in_dev = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 1
-# echo $Files_in_dev > ../dev.txt
+git checkout master   #----- This script should be included in checkout function.
+$Files_in_Master = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 1
+echo $Files_in_Master > ../master.txt
+git checkout dev-branch
+$Files_in_dev = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 1
+echo $Files_in_dev > ../dev.txt
 #git checkout master
 
 foreach($file in $Files)
@@ -90,11 +88,11 @@ foreach($file in $Files)
 
 echo "File sent into master function is $file"
 
-$m = Find_in_master
+$m = Find_in_master($file,$Files_in_Master)
 echo "m = $m"
 
 echo "File sent into dev function is $file"
-$d = Find_in_dev
+$d = Find_in_dev($file,$Files_in_dev)
 echo "d = $d"
 
 if     (($m -eq 1) -and ($d -eq 0))
