@@ -23,10 +23,10 @@ $Files_Deleted = New-Object System.Collections.ArrayList;
 $Files = git diff master dev-branch --name-only
 
 git checkout master   #----- This script should be included in checkout function.
-$Files_in_Master = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 1
+$Files_in_Master = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 1 -name
 echo $Files_in_Master > ../master.txt
 git checkout dev-branch
-$Files_in_dev = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 1
+$Files_in_dev = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 1 -name
 echo $Files_in_dev > ../dev.txt
 #git checkout master
 
