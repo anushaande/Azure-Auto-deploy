@@ -12,27 +12,40 @@ echo "-------------------------------------------- `n"
 echo $Master_hash
 git checkout dev-branch
 $Dev_hash = categorize_files_modified_master
-
-# $files = $Master_hash.keys
-
-# foreach($file in $files){
-
-# if($Master_hash.$file -eq $Dev_hash.$file){
-
-
-
-
-
-
-
-
-# }
-
-
-
 echo "This is the hash table from dev branch `n"
 echo "-------------------------------------------- `n"
 echo $Dev_hash
+
+
+
+
+$files = $Master_hash.keys
+
+foreach($file in $files){
+$m = $Master_hash[$file]
+echo "m is $m"
+
+$d = $Dev_hash[$file]
+echo "d is $d"
+
+if     (($m -eq 1) -and ($d -eq 0))
+{
+echo "$file is present in master but not in dev branch `n"
+}
+elseif (($m -eq 0) -and ($d -eq 1))
+{
+echo "$file is not present in master but in dev branch `n"
+}
+elseif (($m -eq 1) -and ($d -eq 1))
+{
+echo "$file is present in both master as well as dev branch `n"
+}
+else
+{
+echo "$file is not present in master or dev branches `n"
+}
+
+}
 
 
 
