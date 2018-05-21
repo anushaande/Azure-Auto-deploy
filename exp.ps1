@@ -21,7 +21,7 @@ $file,
 $Files_in_Master
    ) 
 # End of Parameters
-echo "This is from master function . File sent into master function is $file `n"
+echo "This is from master function.File sent into master function is $file `n"
 foreach($Masterfile in $Files_in_Master)
 {
 if (Test-Path $Masterfile -include $file)
@@ -48,7 +48,7 @@ $file,
 $Files_in_dev
    ) 
 # End of Parameters
-echo "This is from dev function . File sent into dev function is $file `n"
+echo "This is from dev function.File sent into dev function is $file `n"
 foreach($Devfile in $Files_in_dev)
 {
 if (Test-Path $Devfile -include $file)
