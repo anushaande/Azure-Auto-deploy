@@ -10,7 +10,7 @@ $Master_hash = categorize_files_modified_master
 echo "This is the hash table from master branch `n"
 echo "-------------------------------------------- `n"
 echo $Master_hash
-git chekout dev-branch
+git checkout dev-branch
 $Dev_hash = categorize_files_modified_master
 
 echo "This is the hash table from dev branch `n"
