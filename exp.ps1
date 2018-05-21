@@ -40,9 +40,12 @@ $Files_Modified.Add($file)
 }
 }
 
-echo "files added to dev branch are $Files_Added `n"
-echo "Files deleted from dev branch are $Files_Deleted `n"
-echo "Files that are just modified are $Files_Modified `n"
+echo "files added to dev branch are `n"
+echo "$Files_Added `n"
+echo "Files deleted from dev branch are 'n"
+echo "$Files_Deleted `n"
+echo "Files that are just modified are 'n"
+echo "$Files_Modified `n"
 
 
 
