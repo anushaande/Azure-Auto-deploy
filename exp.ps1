@@ -37,7 +37,7 @@ $x = 0
 }
 }
 #echo "Value of x in master function is $x `n"
-return $x
+echo $x
 }
 
 Function Find_in_dev 
@@ -64,7 +64,7 @@ $y = 0
 }
 }
 #echo "Value of y in dev function is $y `n"
-return $y
+echo $y
 }
 
 Function categorize_files_modified {
