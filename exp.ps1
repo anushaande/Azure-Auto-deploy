@@ -2,8 +2,8 @@
 
 ."C:\WorkStation\GitLocalRepo\Azure-Auto-deploy\PushToMaster\findInMaster.ps1"
 
-$Master_hash = @{}
-$Dev_hash = @{}
+$Master_hash = [ordered]@{}
+$Dev_hash = [ordered]@{}
 
 git checkout master
 $Master_hash = categorize_files_modified_master
@@ -13,9 +13,28 @@ echo $Master_hash
 git checkout dev-branch
 $Dev_hash = categorize_files_modified_master
 
+# $files = $Master_hash.keys
+
+# foreach($file in $files){
+
+# if($Master_hash.$file -eq $Dev_hash.$file){
+
+
+
+
+
+
+
+
+# }
+
+
+
 echo "This is the hash table from dev branch `n"
 echo "-------------------------------------------- `n"
 echo $Dev_hash
+
+
 
 
 
