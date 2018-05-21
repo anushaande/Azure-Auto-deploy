@@ -2,6 +2,9 @@
 
 ."C:\WorkStation\GitLocalRepo\Azure-Auto-deploy\PushToMaster\findInMaster.ps1"
 
+$Files_Modified = New-Object System.Collections.ArrayList;
+$Files_Added = New-Object System.Collections.ArrayList;
+$Files_Deleted = New-Object System.Collections.ArrayList;
 $Master_hash = [ordered]@{}
 $Dev_hash = [ordered]@{}
 
@@ -17,35 +20,29 @@ echo "-------------------------------------------- `n"
 echo $Dev_hash
 
 
-
-
 $files = $Master_hash.keys
 
 foreach($file in $files){
 $m = $Master_hash[$file]
-echo "m is $m"
-
 $d = $Dev_hash[$file]
-echo "d is $d"
 
 if     (($m -eq 1) -and ($d -eq 0))
 {
-echo "$file is present in master but not in dev branch `n"
+$Files_Deleted.Add($file)
 }
 elseif (($m -eq 0) -and ($d -eq 1))
 {
-echo "$file is not present in master but in dev branch `n"
+$Files_Added.Add($file)
 }
 elseif (($m -eq 1) -and ($d -eq 1))
 {
-echo "$file is present in both master as well as dev branch `n"
+$Files_Modified.Add($file)
 }
-else
-{
-echo "$file is not present in master or dev branches `n"
 }
 
-}
+echo "files added to dev branch are $Files_Added `n"
+echo "Files deleted from dev branch are $Files_Deleted `n"
+echo "Files that are just modified are $Files_Modified `n"
 
 
 
@@ -238,9 +235,7 @@ echo "$file is not present in master or dev branches `n"
 
 
 # $Files = New-Object System.Collections.ArrayList;
-# $Files_Modified = New-Object System.Collections.ArrayList;
-# $Files_Added = New-Object System.Collections.ArrayList;
-# $Files_Deleted = New-Object System.Collections.ArrayList;
+
 
 # $Files = git diff master dev-branch --name-only
 
