@@ -17,7 +17,7 @@ Function Find_in_master
 {
 [cmdletbinding()]
 Param (
-[string]$file,  
+$file,  
 [string[]]$Files_in_Master
    ) 
 # End of Parameters
@@ -44,7 +44,7 @@ Function Find_in_dev
 {
 [cmdletbinding()]
 Param (
-[string]$file,  
+$file,  
 [string[]]$Files_in_dev
    ) 
 # End of Parameters
@@ -85,7 +85,7 @@ echo $Files_in_dev > ../dev.txt
 
 foreach($file in $Files)
 {
-$file_string =$file | out-string
+$file_string = $file | out-string
 echo "File sent into master function is $file `n"
 
 $m = Find_in_master $file_string,$Files_in_Master
