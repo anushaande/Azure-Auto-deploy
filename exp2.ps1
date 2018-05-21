@@ -21,7 +21,8 @@ $Files_in_dev = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deplo
 #$Files_in_dev = "Anusha", "Siva", "Nitesh" , "Andrew" , "Farzana"
 foreach($file in $Files)
 {
-Find_in_dev $file $Files_in_dev
+$m = Find_in_dev $file $Files_in_dev
+echo "m is $m"
 }
 }
 
