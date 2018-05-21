@@ -13,6 +13,57 @@
 # $Files_in_dev = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 1
 # echo $Files_in_dev > ../dev.txt
 
+
+Function categorize_files_modified {
+$Files = New-Object System.Collections.ArrayList;
+$Files_Modified = New-Object System.Collections.ArrayList;
+$Files_Added = New-Object System.Collections.ArrayList;
+$Files_Deleted = New-Object System.Collections.ArrayList;
+
+$Files = git diff master dev-branch --name-only
+
+git checkout master   #----- This script should be included in checkout function.
+$Files_in_Master = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 1
+echo $Files_in_Master > ../master.txt
+git checkout dev-branch
+$Files_in_dev = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 1
+echo $Files_in_dev > ../dev.txt
+#git checkout master
+
+foreach($file in $Files)
+{
+$file_string = $file | out-string
+write-host "File sent into master function is $file `n" -ForegroundColor "Cyan"
+
+$m = Find_in_master $file_string $Files_in_Master
+echo "m = $m `n"
+
+write-host "File sent into dev function is $file `n" -ForegroundColor "Cyan"
+
+$d = Find_in_dev $file_string $Files_in_dev
+echo "d = $d `n"
+
+if     (($m -eq 1) -and ($d -eq 0))
+{
+echo "$file is present in master but not in dev branch `n"
+}
+elseif (($m -eq 0) -and ($d -eq 1))
+{
+echo "$file is not present in master but in dev branch `n"
+}
+elseif (($m -eq 1) -and ($d -eq 1))
+{
+echo "$file is present in both master as well as dev branch `n"
+}
+else
+{
+echo "$file is not present in master or dev branches `n"
+}
+}
+}
+
+
+
 Function Find_in_master 
 {
 [cmdletbinding()]
@@ -21,7 +72,7 @@ $file,
 [string[]]$Files_in_Master
    ) 
 # End of Parameters
-#echo "This is from master function.File sent into master function is $file `n"
+write-host "This is from master function.File sent into master function is $file `n" -ForegroundColor "Cyan"
 foreach($Masterfile in $Files_in_Master)
 {
 if (Test-Path $Masterfile -include $file)
@@ -48,7 +99,7 @@ $file,
 [string[]]$Files_in_dev
    ) 
 # End of Parameters
-#echo "This is from dev function.File sent into dev function is $file `n"
+write-host "This is from dev function.File sent into dev function is $file `n" -ForegroundColor "Cyan"
 foreach($Devfile in $Files_in_dev)
 {
 if (Test-Path $Devfile -include $file)
@@ -67,52 +118,7 @@ $y = 0
 echo $y
 }
 
-Function categorize_files_modified {
-$Files = New-Object System.Collections.ArrayList;
-$Files_Modified = New-Object System.Collections.ArrayList;
-$Files_Added = New-Object System.Collections.ArrayList;
-$Files_Deleted = New-Object System.Collections.ArrayList;
 
-$Files = git diff master dev-branch --name-only
-
-git checkout master   #----- This script should be included in checkout function.
-$Files_in_Master = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 1
-echo $Files_in_Master > ../master.txt
-git checkout dev-branch
-$Files_in_dev = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 1
-echo $Files_in_dev > ../dev.txt
-#git checkout master
-
-foreach($file in $Files)
-{
-$file_string = $file | out-string
-echo "File sent into master function is $file `n"
-
-$m = Find_in_master $file_string,$Files_in_Master
-echo "m = $m `n"
-
-echo "File sent into dev function is $file `n"
-$d = Find_in_dev $file_string,$Files_in_dev
-echo "d = $d `n"
-
-if     (($m -eq 1) -and ($d -eq 0))
-{
-echo "$file is present in master but not in dev branch `n"
-}
-elseif (($m -eq 0) -and ($d -eq 1))
-{
-echo "$file is not present in master but in dev branch `n"
-}
-elseif (($m -eq 1) -and ($d -eq 1))
-{
-echo "$file is present in both master as well as dev branch `n"
-}
-else
-{
-echo "$file is not present in master or dev branches `n"
-}
-}
-}
 
 categorize_files_modified
 
