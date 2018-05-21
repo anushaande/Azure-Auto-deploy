@@ -4,16 +4,23 @@ Function categorize_files_modified_master {
 $Files = New-Object System.Collections.ArrayList;
 $Files_in_Master = New-Object System.Collections.ArrayList;
 $Files = git diff master dev-branch --name-only
-$Files_Status_master = @{}
-git checkout master
 $Files_in_Master = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 2 -name
+$Files_Status = @{}
+
 foreach($file in $Files)
 {
-$m = Find_in_Master $file $Files_in_Master
-echo "m is $m"
-$Files_Status_master.Add($file, $m)
-echo $Files_Status_master
+
+$index = $file.split("/").count 
+
+$sfile = $file.split("/")[$index-1]
+
+#echo "file name is $sfile `n"
+
+$m = Find_in_Master $sfile $Files_in_Master
+#echo "m is $m `n"
+$Files_Status.Add($sfile, $m)
 }
+echo $Files_Status
 }
 
 
@@ -42,7 +49,6 @@ $x = 0
 echo $x
 }
 
-categorize_files_modified_master
 
 
 

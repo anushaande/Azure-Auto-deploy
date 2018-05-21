@@ -3,10 +3,11 @@
 Function categorize_files_modified_dev {
 $Files = New-Object System.Collections.ArrayList;
 $Files_in_dev = New-Object System.Collections.ArrayList;
+
 $Files = git diff master dev-branch --name-only
+$Files_in_dev = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 1 -name
 $Files_Status_dev = @{}
-$Files_in_dev = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 2 -name
-#$Files_in_dev = "Anusha", "Siva", "Nitesh" , "Andrew" , "Farzana"
+
 foreach($file in $Files)
 {
 $d = Find_in_dev $file $Files_in_dev
