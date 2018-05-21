@@ -31,7 +31,7 @@ echo "m is $m"
 Function Find_in_dev 
 {
 [cmdletbinding()]
-Param ($Devfile, [string[]]$Files_in_dev ) 
+Param ($file, [string[]]$Files_in_dev ) 
 # End of Parameters
 write-host "This is from dev function.File sent into dev function is $file `n" -ForegroundColor "Cyan"
 #echo "Array is $Files_in_dev `n"
