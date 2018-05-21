@@ -69,7 +69,7 @@ echo "$file is not present in master or dev branches `n"
 Function Find_in_master 
 {
 [cmdletbinding()]
-Param ($Masterfile,  [string[]]$Files_in_Master) 
+Param ($file,  [string[]]$Files_in_Master) 
 # End of Parameters
 write-host "This is from master function.File sent into master function is $file `n" -ForegroundColor "Cyan"
 foreach($Masterfile in $Files_in_Master)
@@ -93,7 +93,7 @@ echo $x
 Function Find_in_dev 
 {
 [cmdletbinding()]
-Param ($Devfile, [string[]]$Files_in_dev) 
+Param ($file, [string[]]$Files_in_dev) 
 # End of Parameters
 write-host "This is from dev function.File sent into dev function is $Devfile `n" -ForegroundColor "Cyan"
 foreach($Devfile in $Files_in_dev)
