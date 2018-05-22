@@ -1,45 +1,43 @@
 #!/bin/bash
 
-Function categorize_files_modified_dev {
+Function categorize_files {
 $Files = New-Object System.Collections.ArrayList;
-$Files_in_dev = New-Object System.Collections.ArrayList;
-
+$Files_in_branch = New-Object System.Collections.ArrayList;
 $Files = git diff master dev-branch --name-only
-$Files_in_dev = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 1 -name
-$Files_Status_dev = @{}
+$Files_in_branch = Get-ChildItem -Path C:\WorkStation\GitLocalRepo\Azure-Auto-deploy -Depth 3 -name
+$Files_Status_branch = @{}
 
 foreach($file in $Files)
 {
-$d = Find_in_dev $file $Files_in_dev
-echo "d is $d"
-$Files_Status_dev.Add($file, $d)
+$status = Find_in_branch $file $Files_in_branch
+
+$Files_Status_branch.Add($file, $status)
 }
-echo $Files_Status_dev
+echo $Files_Status_branch
 }
 
-Function Find_in_dev 
+Function Find_in_branch 
 {
 [cmdletbinding()]
-Param ($file, [string[]]$Files_in_dev ) 
+Param ($file, [string[]]$Files_in_branch ) 
 # End of Parameters
-write-host "This is from dev function.File sent into dev function is $file `n" -ForegroundColor "Cyan"
+write-host "This is from function.File sent into unction is $file `n" -ForegroundColor "Cyan"
 #echo "Array is $Files_in_dev `n"
-foreach($Devfile in $Files_in_dev)
+foreach($Branchfile in $Files_in_branch)
 {
-if (Test-Path $Devfile -include $file)
+if (Test-Path $Branchfile -include $file)
 {
-$y = 1
+$x = 1
 # echo "$file exists in master"
 break
 }
 else
 {
-$y = 0
+$x = 0
 # echo "$file doesnot exist in master"
 }
 }
 #echo "Value of y in dev function is $y `n"
-echo $y
+echo $x
 }
 
-categorize_files_modified_dev
