@@ -9,7 +9,11 @@ $Files_Status_branch = @{}
 
 foreach($file in $Files)
 {
-$status = Find_in_branch $file $Files_in_branch
+$index = $file.split("/").count 
+
+$splitfile = $file.split("/")[$index-1]
+
+$status = Find_in_branch $splitfile $Files_in_branch
 
 $Files_Status_branch.Add($file, $status)
 }
