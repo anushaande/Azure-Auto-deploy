@@ -16,8 +16,6 @@
  ================================================================================ 
  #>
  #!/bin/bash
-
- ."C:\WorkStation\GitLocalRepo\Azure-Auto-deploy\GroupFiles.ps1"
  
  Add-Type -Assembly System.Windows.Forms     ## Load the Windows Forms assembly 
  ## Create the main form 
